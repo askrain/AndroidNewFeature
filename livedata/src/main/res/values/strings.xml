@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LiveData</string>
+    <string name="thunb_up">赞</string>
+    <string name="thumb_down">踩</string>
+</resources>

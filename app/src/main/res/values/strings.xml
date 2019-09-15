@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">NewFeatureDemo</string>
+    <string name="button">Button</string>
+    <string name="iv_des">icon</string>
+    <string name="tv_name">请输入你的名字</string>
+    <string name="tv_versionCode">V.7.01</string>
+</resources>
