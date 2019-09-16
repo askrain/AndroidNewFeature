@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModel;
  */
 public class MyViewModel extends ViewModel {
 //    private MutableLiveData<Integer> number;
-        private SavedStateHandle handle;
+        private SavedStateHandle handle;//只保存应用生命周期的数据，对于主动finish的页面不具有保存数据的效果。建议使用持久化保存手段
         public MyViewModel(SavedStateHandle handle){
            this.handle =handle;
 
