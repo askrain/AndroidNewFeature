@@ -3,4 +3,5 @@
     <dimen name="teamTextSize">20sp</dimen>
     <dimen name="scoreTextSize">40sp</dimen>
     <dimen name="btn_size">30sp</dimen>
+    <dimen name="btn_size_land">25sp</dimen>
 </resources>

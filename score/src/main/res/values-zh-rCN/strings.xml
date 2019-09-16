@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">记分</string>
+    <string name="teama">A队</string>
+    <string name="teamb">B队</string>
+    <string name="btn_reset">重置</string>
+    <string name="btn_undo">撤销</string>
+    <string name="score">分数</string>
+</resources>
