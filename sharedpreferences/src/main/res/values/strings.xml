@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SharedPreferences</string>
+    <string name="sp_file">sp_file</string>
+    <string name="sp_file_number_key">sp_file_number_key</string>
+</resources>

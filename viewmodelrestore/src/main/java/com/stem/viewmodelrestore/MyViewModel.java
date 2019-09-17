@@ -5,7 +5,7 @@ import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
 /**
- * @描述 <在此添加描述信息>
+ * @描述 SavedStateHandle是一个类似Bundle的数据结构
  * @作者 stemt
  * @日期 2019-09-16 22:07
  * @版本
