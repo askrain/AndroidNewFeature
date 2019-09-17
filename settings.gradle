@@ -1,0 +1,2 @@
+include ':app', ':viewmodeltest', ':livedata', ':databinding', ':score', ':viewmodelrestore', ':sharedpreferences'
+rootProject.name='NewFeatureDemo'
