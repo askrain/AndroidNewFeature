@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ViewModelRestoreWithSp</string>
+    <string name="add">+</string>
+    <string name="minus">-</string>
+    <string name="sp_file_name">sp_file_name</string>
+    <string name="data_key">data_key</string>
+</resources>
