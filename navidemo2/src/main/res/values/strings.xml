@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">navidemo2</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_text">Button</string>
+    <string name="tv_value">Hello</string>
+    <string name="et">请输入你想传递的数据</string>
+    <string name="name">Name</string>
+</resources>
