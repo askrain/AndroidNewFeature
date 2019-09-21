@@ -1,2 +1,2 @@
-include ':app', ':viewmodeltest', ':livedata', ':databinding', ':score', ':viewmodelrestore', ':sharedpreferences', ':viewmodelrestorewithsp', ':navigationdemo', ':navidemo2'
+include ':app', ':viewmodeltest', ':livedata', ':databinding', ':score', ':viewmodelrestore', ':sharedpreferences', ':viewmodelrestorewithsp', ':navigationdemo', ':navidemo2', ':naviviewmodel'
 rootProject.name='NewFeatureDemo'
