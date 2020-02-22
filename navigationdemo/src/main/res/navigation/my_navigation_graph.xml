@@ -16,6 +16,7 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
+    <!--Label是标题栏上显示的文本-->
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.stem.navigationdemo.DetailFragment"

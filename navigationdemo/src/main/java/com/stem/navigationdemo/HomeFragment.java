@@ -32,14 +32,14 @@ public class HomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
-    @Override
+    @Override //初始化的工作
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Button button= getView().findViewById(R.id.btn_jump1);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavController controller = Navigation.findNavController(v);
+                NavController controller = Navigation.findNavController(v);//导航动作
                 controller.navigate(R.id.action_homeFragment_to_detailFragment);
             }
         });

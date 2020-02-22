@@ -41,5 +41,6 @@ public class DetailFragment extends Fragment {
                 controller.navigate(R.id.action_detailFragment_to_homeFragment);
             }
         });
+       /* getView().findViewById(R.id.btn_home).setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_detailFragment_to_homeFragment));*/
     }
 }

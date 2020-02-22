@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding= DataBindingUtil.setContentView(this, R.layout.activity_main);
         mMyViewModel = ViewModelProviders.of(this,new SavedStateViewModelFactory(getApplication(), this)).get(MyViewModel.class);
-        /*  常规方式：在页面被回首的时候，保存页面相关的值
+        /*  常规方式：在页面被回收的时候，保存页面相关的值
         if (savedInstanceState!=null){
             mMyViewModel.getNumber().setValue(savedInstanceState.getInt(KEY_NUMBER));
         }*/

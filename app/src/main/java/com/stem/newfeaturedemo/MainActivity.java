@@ -53,6 +53,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        Log.d(TAG, "onSaveInstanceState: ");
+        Log.d(TAG, "onSaveInstanceState: ");//Home键会触发
     }
 }

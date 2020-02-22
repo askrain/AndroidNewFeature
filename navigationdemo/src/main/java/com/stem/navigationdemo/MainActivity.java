@@ -7,6 +7,9 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 
+/**
+ * Navigation 系列一
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
