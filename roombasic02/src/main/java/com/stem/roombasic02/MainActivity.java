@@ -16,6 +16,13 @@ import android.widget.TextView;
 
 import java.util.List;
 
+
+/*
+* 逻辑调用层级：
+* 1. activity 调用ViewModel的接口（包含LiveData）
+* 2. ViewModel 绑定数据仓库，调用数据仓库接口，执行相关业务
+* 3. 数据仓库绑定 数据库和dao，直接对数据库进行异步操作，暴露接口给ViewModel
+* 4. dao直接运用Room技术操作数据库*/
 public class MainActivity extends AppCompatActivity {
 //    WordDatabase mWordDatabase;
 //    WordDao mWordDao;
