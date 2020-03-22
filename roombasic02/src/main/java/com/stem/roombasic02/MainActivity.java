@@ -1,9 +1,14 @@
 package com.stem.roombasic02;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.room.Room;
 import androidx.room.Update;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,19 +17,35 @@ import android.widget.TextView;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    WordDatabase mWordDatabase;
-    WordDao mWordDao;
+//    WordDatabase mWordDatabase;
+//    WordDao mWordDao;
     Button insert,update,clear,delete;
     TextView mTextView;
+//    LiveData<List<Word>> allWordLive;
+    WordViewModel mWordViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mWordDatabase = Room.databaseBuilder(this, WordDatabase.class, "word_database").allowMainThreadQueries().build();
-        mWordDao = mWordDatabase.getWordDao();
+//        mWordDatabase = Room.databaseBuilder(this, WordDatabase.class, "word_database").allowMainThreadQueries().build();
+//        mWordDatabase = WordDatabase.getDatabase(this);
+//        mWordDao = mWordDatabase.getWordDao();
+        mWordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
+        //        allWordLive = mWordDao.getAllWordLive();
         initView();
-        updateView();
+        mWordViewModel.getAllWordsLive().observe(this, new Observer<List<Word>>() {
+            @Override
+            public void onChanged(List<Word> words) {
+                StringBuilder text = new StringBuilder();
+                for (int i = 0; i < words.size(); i++) {
+                    Word word = words.get(i);
+                    text.append(word.getId()).append(":").append(word.getWord()).append("+").append(word.getChineseMeaning()).append("\n");
+                }
+                mTextView.setText(text.toString());
+            }
+        });
+//        updateView();
 
     }
 
@@ -39,15 +60,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Word word1 = new Word("hello", "您好");
                 Word word2 =new Word("world", "世界");
-                mWordDao.insertWords(word1,word2);
-                updateView();
+//                mWordDao.insertWords(word1,word2);
+                //                updateView();
+//                new InsertAsyncTask(mWordDao).execute(word1,word2);
+                mWordViewModel.insertWords(word1,word2);
             }
         });
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mWordDao.deleteAllWords();
-                updateView();
+//                mWordDao.deleteAllWords();
+//                updateView();
+//                new DeleteAllAsyncTask(mWordDao).execute();
+                mWordViewModel.deleteAllWord();
             }
         });
         update.setOnClickListener(new View.OnClickListener() {
@@ -55,8 +80,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Word word =new Word("Hi", "您好啊");
                 word.setId(11);
-                mWordDao.updateWords(word);
-                updateView();
+//                new UpdateAsyncTask(mWordDao).execute(word);
+//                mWordDao.updateWords(word);
+                mWordViewModel.updateWords(word);
+//                updateView();
             }
         });
 
@@ -65,19 +92,75 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Word word =new Word("Hi", "您好啊");
                 word.setId(15);
-                mWordDao.deleteWords(word);
-                updateView();
+//                new DeleteAsyncTask(mWordDao).execute(word);
+//                mWordDao.deleteWords(word);
+                mWordViewModel.deleteWord(word);
+//                updateView();
             }
         });
     }
 
-    void updateView(){
-        List<Word> list =mWordDao.getAllWords();
-        String text ="";
-        for (int i = 0; i < list.size(); i++) {
-            Word word = list.get(i);
-            text += word.getId()+":"+word.getWord()+"+"+word.getChineseMeaning()+"\n";
+//    void updateView(){
+//        List<Word> list =mWordDao.getAllWords();
+//        String text ="";
+//        for (int i = 0; i < list.size(); i++) {
+//            Word word = list.get(i);
+//            text += word.getId()+":"+word.getWord()+"+"+word.getChineseMeaning()+"\n";
+//        }
+//        mTextView.setText(text);
+//    }
+
+   /* static class InsertAsyncTask extends AsyncTask<Word,Void,Void>{
+        private WordDao wordDao;
+
+        public InsertAsyncTask(WordDao wordDao) {
+            this.wordDao = wordDao;
         }
-        mTextView.setText(text);
+
+        @Override
+        protected Void doInBackground(Word... words) {
+            wordDao.insertWords(words);
+            return null;
+        }
     }
+    static class UpdateAsyncTask extends AsyncTask<Word,Void,Void>{
+        private WordDao wordDao;
+
+        public UpdateAsyncTask(WordDao wordDao) {
+            this.wordDao = wordDao;
+        }
+
+        @Override
+        protected Void doInBackground(Word... words) {
+            wordDao.updateWords(words);
+            return null;
+        }
+    }
+
+    static class DeleteAsyncTask extends AsyncTask<Word,Void,Void>{
+        private WordDao wordDao;
+
+        public DeleteAsyncTask(WordDao wordDao) {
+            this.wordDao = wordDao;
+        }
+
+        @Override
+        protected Void doInBackground(Word... words) {
+            wordDao.deleteWords(words);
+            return null;
+        }
+    }
+
+    static class DeleteAllAsyncTask extends AsyncTask<Void,Void,Void>{
+        private WordDao wordDao;
+
+        public DeleteAllAsyncTask(WordDao wordDao) {
+            this.wordDao = wordDao;
+        }
+        @Override
+        protected Void doInBackground(Void... voids) {
+            wordDao.deleteAllWords();
+            return null;
+        }
+    }*/
 }

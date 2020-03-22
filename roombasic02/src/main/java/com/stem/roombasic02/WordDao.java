@@ -1,5 +1,6 @@
 package com.stem.roombasic02;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -33,5 +34,10 @@ public interface WordDao {
 
     @Query("SELECT * FROM WORD ORDER BY ID DESC")
     List<Word> getAllWords();
+
+    @Query("SELECT * FROM WORD ORDER BY ID DESC")
+    LiveData<List<Word>> getAllWordLive();//使用LiveData 并检测数据变化，在回调中更新view。避免重复调用
+
+
 
 }
