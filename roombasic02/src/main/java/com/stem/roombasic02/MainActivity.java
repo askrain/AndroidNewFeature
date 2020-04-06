@@ -1,17 +1,16 @@
 package com.stem.roombasic02;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.room.Room;
-import androidx.room.Update;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.List;
@@ -30,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     TextView mTextView;
 //    LiveData<List<Word>> allWordLive;
     WordViewModel mWordViewModel;
+    RecyclerView mRecyclerView;
+    MyAdapter mMyAdapter,mMyAdapter2;
+    Switch mSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +43,23 @@ public class MainActivity extends AppCompatActivity {
         mWordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
         //        allWordLive = mWordDao.getAllWordLive();
         initView();
+        mMyAdapter = new MyAdapter(false);
+        mMyAdapter2 = new MyAdapter(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(mMyAdapter);
         mWordViewModel.getAllWordsLive().observe(this, new Observer<List<Word>>() {
             @Override
             public void onChanged(List<Word> words) {
-                StringBuilder text = new StringBuilder();
+                mMyAdapter.setAllWords(words);
+                mMyAdapter.notifyDataSetChanged();
+                mMyAdapter2.setAllWords(words);
+                mMyAdapter2.notifyDataSetChanged();
+               /* StringBuilder text = new StringBuilder();
                 for (int i = 0; i < words.size(); i++) {
                     Word word = words.get(i);
                     text.append(word.getId()).append(":").append(word.getWord()).append("+").append(word.getChineseMeaning()).append("\n");
                 }
-                mTextView.setText(text.toString());
+                mTextView.setText(text.toString());*/
             }
         });
 //        updateView();
@@ -57,20 +67,52 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mTextView = (TextView)findViewById(R.id.textView);
+//        mTextView = (TextView)findViewById(R.id.textView_number);
+        mRecyclerView = findViewById(R.id.recyclerview);
         insert = (Button) findViewById(R.id.insert);
-        update = (Button) findViewById(R.id.update);
+//        update = (Button) findViewById(R.id.update);
         clear = (Button) findViewById(R.id.clear);
-        delete = (Button) findViewById(R.id.delete);
+//        delete = (Button) findViewById(R.id.delete);
+        mSwitch = findViewById(R.id.switch1);
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Word word1 = new Word("hello", "您好");
-                Word word2 =new Word("world", "世界");
+                /*Word word1 = new Word("hello", "您好");
+                Word word2 =new Word("world", "世界");*/
+                String [] english ={
+                        "hello",
+                        "world",
+                        "Android",
+                        "Google",
+                        "Studio",
+                        "Project",
+                        "Database",
+                        "Recycler",
+                        "View",
+                        "String",
+                        "Value"
+                };
+                String [] chinese ={
+                        "你好",
+                        "世界",
+                        "安卓",
+                        "谷歌",
+                        "工作室",
+                        "项目",
+                        "数据库",
+                        "循环",
+                        "视图",
+                        "字符串",
+                        "价值"
+                        };
 //                mWordDao.insertWords(word1,word2);
                 //                updateView();
 //                new InsertAsyncTask(mWordDao).execute(word1,word2);
-                mWordViewModel.insertWords(word1,word2);
+                int size = english.length;
+                for (int i = 0; i < size; i++) {
+
+                    mWordViewModel.insertWords(new Word(english[i],chinese[i]));
+                }
             }
         });
         clear.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +124,17 @@ public class MainActivity extends AppCompatActivity {
                 mWordViewModel.deleteAllWord();
             }
         });
-        update.setOnClickListener(new View.OnClickListener() {
+        mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    mRecyclerView.setAdapter(mMyAdapter2);
+                }else {
+                    mRecyclerView.setAdapter(mMyAdapter);
+                }
+            }
+        });
+/*        update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Word word =new Word("Hi", "您好啊");
@@ -104,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 mWordViewModel.deleteWord(word);
 //                updateView();
             }
-        });
+        });*/
     }
 
 //    void updateView(){
