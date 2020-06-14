@@ -1,2 +1,4 @@
+include ':bottomnavigationdemo0614022'
+include ':bottomnavigationdemo'
 include ':app', ':viewmodeltest', ':livedata', ':databinding', ':score', ':viewmodelrestore', ':sharedpreferences', ':viewmodelrestorewithsp', ':navigationdemo', ':navidemo2', ':naviviewmodel', ':calculationtest', ':lifecycles01', ':roombasic02', ':viewmodelsavedstate0614'
 rootProject.name='NewFeatureDemo'
