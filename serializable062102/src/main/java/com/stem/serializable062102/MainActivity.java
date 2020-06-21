@@ -2,6 +2,7 @@ package com.stem.serializable062102;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
         loadBtn = findViewById(R.id.buttonLoad);
         mTextView = findViewById(R.id.textView);
 
+        Intent intent = new Intent();
+        Bundle bundle = new Bundle();
+//        bundle.putParcelable(, );
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

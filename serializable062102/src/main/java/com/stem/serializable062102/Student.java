@@ -1,7 +1,6 @@
 package com.stem.serializable062102;
 
 import java.io.Serializable;
-import java.security.PrivilegedAction;
 
 /**
  * @描述 <在此添加描述信息>
@@ -9,8 +8,10 @@ import java.security.PrivilegedAction;
  * @日期 2020-06-21 21:24
  * @版本
  */
- public class Student implements Serializable {
-     private String name;
+class Student implements Serializable {
+
+    private static final long serialVersionUID = -7027685273182701060L;
+    private String name;
      private int age;
      private Score score;
 
@@ -55,7 +56,8 @@ import java.security.PrivilegedAction;
 }
 
  class Score implements Serializable {
-    private int chinese;
+     private static final long serialVersionUID = 5089124543723050753L;
+     private int chinese;
     private int english;
     private int math;
 
