@@ -1,3 +1,4 @@
+include ':gallerydemo'
 include ':serializable062102'
 include ':pagingdemo062101'
 include ':bottomnavigationdemo0614022'
